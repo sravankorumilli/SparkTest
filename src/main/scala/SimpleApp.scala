@@ -5,13 +5,11 @@ import org.apache.spark.rdd.RDD
 
 object SimpleApp {
   def main(args: Array[String]) {
-    val logFile = "/Users/sravank/Career/BigData/spark-1.5.2-bin-hadoop2.6/README.md"
+    val logFile = "src/main/resources/README.md"
     val conf = new SparkConf().setAppName("Simple Application").setMaster("local[4]")
     val sc = new SparkContext(conf)
     val logData = sc.textFile(logFile, 2).repartition(2).cache()
-
     wordCount(logData)
-
   }
 
   def wordCount(textFile : RDD[String]): Unit ={
